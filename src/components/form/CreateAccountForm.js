@@ -41,7 +41,6 @@ export function CreateAccountForm() {
             }, 5000);
         },
     });
-    console.log(formik.errors);
 
     let submitDisabled = !formik.isValid || formik.isValidating || formik.isSubmitting;
 

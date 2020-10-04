@@ -1,0 +1,293 @@
+@import "../VALUES/colors.scss";
+@import "../VALUES/dimens.scss";
+
+@mixin flex-row-center-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+}
+
+.form-container {
+    position: relative;
+    // border: 1px solid red;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+    margin: 24px auto 5px auto;
+    // padding: 40px 10%;
+    // border: 1px solid red;
+
+    a {
+        color: $colorAccentDim;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.form header {
+    margin: 0px 0px 20px 0px;
+    color: $colorAccent;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form-group-container {
+    margin-bottom: 16px;
+}
+
+.form-group {
+    position: relative;
+    margin: 0px 0px 2px 0px;
+    // border: 1px solid red;
+}
+
+.form-group label {
+    position: absolute;
+    left: $labelBlurLeft;
+    top: $labelBlurTop;
+    transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    -moz-transition: all ease 0.2s;
+    font-size: $labelBlurFontSize;
+    font-weight: 400;
+    font-family: Helvetica, Arial, sans-serif;
+    color: $labelColor;
+    pointer-events: none;
+    text-transform: capitalize;
+    border-radius: 5px;
+}
+
+/* Removing input background color for autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $inputBgColorFocus inset !important;
+    box-shadow: 0 0 0 30px $inputBgColorFocus inset !important;
+}
+
+input:not([type=submit]) {
+    outline: none;
+    width: 100%;
+    display: block;
+    background-color: $backgroundColor;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+input.password {
+    padding-right: 30px;
+    // border: 1px solid green;
+}
+
+.password-icon {
+    @include flex-row-center-center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 4px;
+    top: 50%;
+    margin-top: -10px;
+    // border: 1px solid blue;
+}
+
+input:not([type=submit]):focus ~ label
+/* input:not([type=submit]):valid ~ label */
+{
+    top: $labelFocusTop;
+    left: $labelFocusLeft;
+    font-size: $labelFocusFontSize;
+    font-weight: 600;
+    color: $colorAccentDim;
+    background-color: $labelBgColorFocus;
+    background-image: $labelBgImageFocus;
+    z-index: 1;
+    padding: $labelFocusPadding;
+
+}
+
+input:not([type=submit]):focus
+// ,input:not([type=submit]):valid
+{
+    background-color: $inputBgColorFocus;
+    border: 2px solid $colorAccentDim;
+}
+
+.forgot-password-link {
+    color: $colorAccent;
+    font-size: 12px;
+}
+
+input[type=submit] {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: $colorAccentDim;
+    color: white;
+    padding: 8px 30px;
+    margin: 15px auto 0px auto;
+    cursor: pointer;
+    font-size: 20px;
+    /* box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.19); */
+}
+
+input[type=submit]:hover {
+    background-color: $colorAccent;
+    // box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.19);
+
+}
+
+input.disable {
+    background-color: #cccccc!important;
+    color: #666666!important;
+    pointer-events: none!important;
+}
+
+.deactivate {
+    pointer-events: none!important;
+}
+
+.error-text-box {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    font-weight: 400;
+    pointer-events: none;
+    // border: 1px solid blue;
+
+    .exclamation-circle {
+        color: $errorColor;
+        margin-right: 8px;
+    }
+
+    span {
+        color: $errorColor;
+        font-size: 11px;
+    }
+}
+
+.input-error {
+    border: 1px solid $errorColor;
+}
+
+.server-feedback-cont {
+    @include flex-row-center-center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+
+.server-feedback {
+    @include flex-row-center-center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 30px;
+    box-shadow: 0 0 16px 8px rgba(0, 0, 0, 0.2);
+    font-size: 25px;
+    background-color: $pass;
+    color: white;
+    
+    span {
+        color: inherit;
+    }
+}
+
+
+.sign-up-valid {
+    display: none;
+    animation: ease 2s linear 1;
+    -webkit-animation: ease 2s linear 1;
+}
+
+@keyframes ease {
+    0% {
+        display: none;
+    }
+
+    50% {
+        display: block;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+.sign-up-error {
+    display: none;
+    animation: shake 2s linear 1;
+    -webkit-animation: shake 2s linear 1;
+}
+
+@keyframes shake {
+    0% { 
+        display: none;
+        transform: translate(1px, 1px) rotate(0deg); 
+        -webkit-transform: translate(1px, 1px) rotate(0deg); 
+    }
+    10% { 
+        transform: translate(-1px, -2px) rotate(-1deg); 
+        -webkit-transform: translate(-1px, -2px) rotate(-1deg); 
+    }
+    20% { 
+        transform: translate(-3px, 0px) rotate(1deg); 
+        -webkit-transform: translate(-3px, 0px) rotate(1deg); 
+    }
+    30% { 
+        transform: translate(3px, 2px) rotate(0deg); 
+        -webkit-transform: translate(3px, 2px) rotate(0deg); 
+    }
+    40% { 
+        transform: translate(1px, -1px) rotate(1deg); 
+        -webkit-transform: translate(1px, -1px) rotate(1deg); 
+    }
+    50% { 
+        display: block;
+        transform: translate(-1px, 2px) rotate(-1deg); 
+        -webkit-transform: translate(-1px, 2px) rotate(-1deg); 
+    }
+    60% { 
+        transform: translate(-3px, 1px) rotate(0deg); 
+        -webkit-transform: translate(-3px, 1px) rotate(0deg); 
+    }
+    70% { 
+        transform: translate(3px, 1px) rotate(-1deg); 
+        -webkit-transform: translate(3px, 1px) rotate(-1deg); 
+    }
+    80% { 
+        transform: translate(-1px, -1px) rotate(1deg); 
+        -webkit-transform: translate(-1px, -1px) rotate(1deg); 
+    }
+    90% { 
+        transform: translate(1px, 2px) rotate(0deg); 
+        -webkit-transform: translate(1px, 2px) rotate(0deg); 
+    }
+    100% { 
+        display: none;
+        transform: translate(1px, -2px) rotate(-1deg); 
+        -webkit-transform: translate(1px, -2px) rotate(-1deg); 
+    }
+}
+
+.agreement-text {
+    p {
+        margin-top: 0;
+        font-size: 12px;
+    }
+}

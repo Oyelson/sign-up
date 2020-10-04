@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { 
+  BrowserRouter as Router,
+  Switch,
+  Route 
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Loading from './components/loading';
+import CreateAccount from './components/createaccount';
+import PageNotFound from './components/pagenotfound';
+
+import './App.scss';
+
+
+const App = () => {
+    const [isLoading, setLoading] = React.useState(true);
+    React.useEffect(() => setLoading(false), []);
+
+    // Display loading page till the App component is mounted
+    if(isLoading) return (<Loading />)
+    else
+    return (
+        <Router>
+            <div className="app">
+              <Switch>
+                <Route exact={true} path="/">
+                  <CreateAccount />
+                </Route>
+                <Route exact={true} path="/sign-up">
+                   <CreateAccount />
+                </Route>
+                <Route exact={true} path="*">
+                  <PageNotFound />
+                </Route>
+              </Switch>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
